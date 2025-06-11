@@ -1,0 +1,36 @@
+app:
+  version: ${BUILD_VERSION:1.0.0}
+  organization: YourOrg
+  
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics, refresh
+      base-path: /actuator
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+
+logging:
+  level:
+    root: INFO
+    com.yourorg: DEBUG
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] %-5level [%logger{36}] - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level [%logger{36}] - %msg%n"
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://ttsdashboard.com:8761/eureka
+    lease-renewal-interval-in-seconds: 30
+    lease-expiration-duration-in-seconds: 90
