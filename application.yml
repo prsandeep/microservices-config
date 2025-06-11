@@ -1,6 +1,4 @@
-app:
-  version: ${BUILD_VERSION:1.0.0}
-  organization: YourOrg
+
   
 management:
   endpoints:
@@ -11,18 +9,9 @@ management:
   endpoint:
     health:
       show-details: always
-  metrics:
-    export:
-      prometheus:
-        enabled: true
 
-logging:
-  level:
-    root: INFO
-    com.yourorg: DEBUG
-  pattern:
-    console: "%d{HH:mm:ss.SSS} [%thread] %-5level [%logger{36}] - %msg%n"
-    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level [%logger{36}] - %msg%n"
+
+
 
 eureka:
   instance:
