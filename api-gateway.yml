@@ -32,6 +32,11 @@ spring:
           predicates:
             - Path=/api/superset/**
 
+        - id: osticket-service
+          uri: lb://OSTICKET-SERVICE
+          predicates:
+            - Path=/api/osticket/**    
+
 logging:
   level:
     org.springframework.cloud.gateway: DEBUG
