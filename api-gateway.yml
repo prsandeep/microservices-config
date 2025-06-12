@@ -1,0 +1,48 @@
+server:
+  port: 8080
+  address: 10.226.25.31
+
+spring:
+  application:
+    name: api-gateway
+  
+  main:
+    allow-bean-definition-overriding: true
+  
+  cloud:
+    gateway:
+      routes:
+        - id: auth-service
+          uri: lb://AUTH-SERVICE  # Fixed capitalization to match Eureka registration
+          predicates:
+            - Path=/api/auth/**, /api/users/**
+          
+        - id: git-service
+          uri: lb://GIT-SERVICE
+          predicates:
+            - Path=/api/git/dashboard/**, /api/git/backups/**, /api/git/repositories/**, /api/git/users/**
+          
+        - id: apisvn-service
+          uri: lb://APISVN-SERVICE
+          predicates:
+            - Path=/api/svn/dashboard/**, /api/svn/backups/**, /api/svn/repositories/**, /api/svn/users/**, /api/svn/backup-schedules/**, /api/svn/migrations/**
+          
+        - id: bugzilla-service
+          uri: lb://BUGZILLA-SERVICE
+          predicates:
+            - Path=/api/superset/**
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.web.reactive: DEBUG
+    reactor.netty: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,gateway
+  endpoint:
+    gateway:
+      enabled: true
