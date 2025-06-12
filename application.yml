@@ -1,4 +1,3 @@
-# Common configuration for all TTS Dashboard services
 eureka:
   instance:
     prefer-ip-address: true
@@ -8,11 +7,6 @@ eureka:
     service-url:
       defaultZone: http://ttsdashboard.com:8761/eureka
 
-# Common JWT configuration
-jwt:
-  secret: ${JWT_SECRET:3cfa76ef14937c1c0ea519f8fc057a80fcd04a7420f8e8bcd0a7567c272e007b}
-
-# Common database configuration
 spring:
   jpa:
     hibernate:
@@ -23,12 +17,14 @@ spring:
         format_sql: true
         dialect: org.hibernate.dialect.MySQL8Dialect
 
-# Common logging configuration
+jwt:
+  secret: ${JWT_SECRET:3cfa76ef14937c1c0ea519f8fc057a80fcd04a7420f8e8bcd0a7567c272e007b}
+
 logging:
   level:
     org.springframework.security: INFO
     org.hibernate.SQL: ERROR
-    
+
 management:
   endpoints:
     web:
