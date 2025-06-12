@@ -8,19 +8,16 @@ spring:
     username: ${DB_USERNAME:root}
     password: ${DB_PASSWORD:root}
     driver-class-name: com.mysql.cj.jdbc.Driver
-
-app:
-  jwt:
-    expiration-ms: 3600000      # 60 minutes
-    refresh-expiration-ms: 86400000  # 24 hours
-
-# Service-specific logging
-logging:
-  level:
-    com.microservices.authservice: DEBUG
-    
-# Security configuration
-spring:
+  
   security:
     filter:
       order: 10
+
+app:
+  jwt:
+    expiration-ms: 3600000
+    refresh-expiration-ms: 86400000
+
+logging:
+  level:
+    com.microservices.authservice: DEBUG
