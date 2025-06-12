@@ -1,0 +1,41 @@
+server:
+  port: 8761
+  address: 10.226.25.31
+spring:
+  application:
+    name: serviceRegistry
+eureka:
+  instance:
+    hostname: 10.226.25.31
+    ip-address: 10.226.25.31
+    prefer-ip-address: true
+    health-check-url-path: /actuator/health
+    status-page-url-path: /actuator/info
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://10.226.25.31:8761/eureka/
+  server:
+    enable-self-preservation: false
+    renewal-percent-threshold: 0.85
+    number-of-replication-retries: 0
+    max-elements-in-peer-replication-pool: 0
+    eviction-interval-timer-in-ms: 10000
+    response-cache-auto-expiration-in-seconds: 30
+    response-cache-update-interval-ms: 15000
+    enable-dashboard: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,env,eureka,metrics
+  endpoint:
+    health:
+      show-details: always
+logging:
+  level:
+    com.netflix.eureka.cluster.ReplicationTaskProcessor: WARN
+    com.netflix.eureka.registry.AbstractInstanceRegistry: INFO
+    com.netflix.discovery: INFO
+    root: INFO
