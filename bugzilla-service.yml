@@ -1,1 +1,15 @@
+superset:
+  url: http://10.226.30.123:8088
+  username: guest
+  password: 12345
+
+server:
+  port: 8088
+  address: 10.226.25.31 # Replace with a valid IP
+
+
+spring:
+ autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration
+
 
